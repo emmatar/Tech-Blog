@@ -1,11 +1,45 @@
-<div class="text-center">
-
-  <h2>{{name}}</h2>
-  <p>{{description}}</p>
-  
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-
-  <p>
-    <button class="btn btn-primary">Comment Here!</button>
-  </p>
+<!-- Display blog information -->
+<div class='forum-header center'>
+  <h3 style='font-size: 2.3rem;'>{{blog.title}}</h3>
 </div>
+<section class='body'>{{blog.body}} </section>
+
+{{!-- /api/blogs/{{blog.id}} --}}
+<!-- Update form -->
+<form class='update-forum' id='updateForm' data-id='{{blog.id}}'>
+  <label for='title'>Title:</label>
+  <input
+    type='text'
+    id='update-title'
+    name='title'
+    style='font-size: 1.2rem;'
+    value='{{blog.title}}'
+  />
+  <br />
+  <label for='body'>Body:</label>
+  <textarea
+    id='update-body'
+    name='body'
+    style='font-size: 1.2rem;'
+  >{{blog.body}}</textarea>
+  <br />
+  <div class='center'>
+    <button
+      class='btn btn-primary'
+      id='update-button'
+      type='submit'
+    >Update</button>
+    <a
+      style='background-color: unset !important;
+        color: unset !important;'
+      href='/dashboard'
+    ><button class='btn btn-primary'>Return to Dashboard</button></a>
+    <button
+      id='delete-blog'
+      class='btn btn-danger'
+      data-id='{{blog.id}}'
+    >DELETE</button>
+  </div>
+</form>
+
+<script src='/js/blog.js'></script>
