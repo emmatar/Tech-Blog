@@ -14,7 +14,7 @@
           </div>
           <section class='body'>{{body}} </section>
           {{#each comments}}
-            <section style='border-bottom: 1rem dotted red; margin-top: 1rem;'>
+            <section>
               <p class='text-warning'>{{description}}</p><br />
               <p class='text-warning fst-italic'>
                 --{{user.name}}
@@ -52,9 +52,7 @@
           </div>
           <section class='body'>{{body}} </section>
           {{#each comments}}
-            <section
-              style='border-bottom: 0.5rem dotted red; margin-top: 1rem;'
-            >
+            <section>
               <p class='text-warning'>{{description}}</p><br />
               <p class='text-warning fst-italic'>
                 --{{user.name}}
@@ -70,9 +68,11 @@
 
 <script>
   function toggleForum(event) { const commentId =
-  document.querySelector(`#${event.target.dataset.id}`) console.log("target",
-  commentId) if (commentId.style.display === "none") { commentId.style.display =
-  "block"; } else { commentId.style.display = "none"; } const form =
+  document.querySelector(`#${event.target.dataset.id}`)
+  {{! Gap to fix error }}
+  if (commentId.style.display === "none") { commentId.style.display = "block"; }
+  else { commentId.style.display = "none"; } const form =
   document.querySelectorAll(".comment-forum"); }
 </script>
+
 <script src='./js/homepage.js'></script>
