@@ -1,7 +1,6 @@
 const updateFormHandler = async (event) => {
   event.preventDefault();
 
-  console.log(event.target.dataset.id);
   const title = document.querySelector('#update-title').value.trim();
   const body = document.querySelector('#update-body').value.trim();
 
