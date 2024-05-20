@@ -1,29 +1,27 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+
 const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
-const path = require('path');
-
+// create a session store instance
 const sess = {
   secret: process.env.SUPER_SECRET,
   cookie: {
-    cookie: {
-      maxAge: 300000,
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
-    },
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
   },
   resave: false,
   saveUninitialized: true,
@@ -32,8 +30,10 @@ const sess = {
   }),
 };
 
+// Use session middleware with the app
 app.use(session(sess));
 
+// Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
@@ -45,6 +45,6 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
-    console.log(`Now listening on http://localhost:${PORT}`),
+    console.log(`Tech Blog Listening on port http://localhost:${PORT}...`),
   );
 });
