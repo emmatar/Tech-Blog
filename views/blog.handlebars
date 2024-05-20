@@ -1,10 +1,12 @@
-<!-- Display blog information -->
+<style>
+  html{ background-image: none; }
+</style>
+
 <div class='forum-header center'>
   <h3 style='font-size: 2.3rem;'>{{blog.title}}</h3>
 </div>
 <section class='body'>{{blog.body}} </section>
 
-{{!-- /api/blogs/{{blog.id}} --}}
 <!-- Update form -->
 <form class='update-forum' id='updateForm' data-id='{{blog.id}}'>
   <label for='title'>Title:</label>
