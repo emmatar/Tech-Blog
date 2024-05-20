@@ -1,14 +1,78 @@
-<!-- Loop over each object in the projects array -->
-{{#each blogs}}
-<div class="row mb-4 project">
-  <div class="col-md-5">
+<div class='forums content'>
+  <h2 style='text-align: center; font-size: 3rem;'>All Blogs</h2>
 
-    <p>Created by {{blog.user.name}} on {{ blog.date_created}}</p>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{blog.description}}
-    </p>
-  </div>
+  {{#if blogs.length}}
+    {{#if logged_in}}
+      {{#each blogs}}
+        <div
+          class='forum-container'
+          role='button'
+          aria-controls='myCommentForum{{id}}'
+        >
+          <div class='forum-header'>
+            <h3 style='font-size: 2.3rem;'>{{title}}</h3>
+          </div>
+          <section class='body'>{{body}} </section>
+          {{#each comments}}
+            <section style='border-bottom: 1rem dotted red; margin-top: 1rem;'>
+              <p class='text-warning'>{{description}}</p><br />
+              <p class='text-warning fst-italic'>
+                --{{user.name}}
+                {{newDate}}
+              </p>
+            </section>
+          {{/each}}
+          <button
+            class='btn btn-primary btn-sm'
+            style='text-align: center; margin: 1rem'
+            data-id='myCommentForum{{id}}'
+            onclick='toggleForum(event)'
+          >Add a Comment</button>
+        </div>
+        <div
+          class='comment-forum'
+          id='myCommentForum{{id}}'
+          style='display: none;'
+        >
+          <form>
+            <textarea
+              name='comment'
+              placeholder='Add a comment'
+              data-id='{{id}}'
+            ></textarea>
+            <button type='submit'>Submit</button>
+          </form>
+        </div>
+      {{/each}}
+    {{else}}
+      {{#each blogs}}
+        <div class='forum-container'>
+          <div class='forum-header'>
+            <h3 style='font-size: 2.3rem;'>{{title}}</h3>
+          </div>
+          <section class='body'>{{body}} </section>
+          {{#each comments}}
+            <section
+              style='border-bottom: 0.5rem dotted red; margin-top: 1rem;'
+            >
+              <p class='text-warning'>{{description}}</p><br />
+              <p class='text-warning fst-italic'>
+                --{{user.name}}
+                {{newDate}}
+              </p>
+            </section>
+          {{/each}}
+        </div>
+      {{/each}}
+    {{/if}}
+  {{/if}}
 </div>
-{{/each}}
+
+<script>
+  function toggleForum(event) { const commentId =
+  document.querySelector(`#${event.target.dataset.id}`) console.log("target",
+  commentId) if (commentId.style.display === "none") { commentId.style.display =
+  "block"; } else { commentId.style.display = "none"; } const form =
+  document.querySelectorAll(".comment-forum"); }
+</script>
+<script src='./js/homepage.js'></script>
