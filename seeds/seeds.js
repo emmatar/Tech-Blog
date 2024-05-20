@@ -1,24 +1,20 @@
 require('dotenv').config();
 const sequelize = require('../config/connection');
-const { User, Blog } = require('../models');
 
-const blogData = require('./blogData.json');
-const userData = require('./userData.json');
+const seedUser = require('./userData');
+const seedBlog = require('./blogData');
+const seedComment = require('./commentData');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+  await seedUser();
 
-  for (const blog of blogData) {
-    await Blog.create({
-      ...blog,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  await seedBlog();
+
+  await seedComment();
+
   process.exit(0);
 };
+
 seedDatabase();
