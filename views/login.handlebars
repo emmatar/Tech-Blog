@@ -1,42 +1,37 @@
-<div class="row">
-  <div class="col-md-6">
-    <h2>Login</h2>
-
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">email:</label>
-        <input class="form-input" type="text" id="email-login" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-6">
-    <h2>Signup</h2>
-
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">name:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
-      </div>
-    </form>
-  </div>
+{{! create a login page }}
+<div style='display: flex; flex-direction: column; justify-content: center;'>
+  <h1 style='text-align: center; font-size: 3rem;'>Login Page</h1>
+  <form
+    action='/api/users/login'
+    method='POST'
+    style='background-color: aquamarine; margin-top: 2rem; display: inline-block; text-align: center;'
+  >
+    <label for='username'>Username:</label>
+    <input
+      style='margin-top: 2rem;'
+      type='text'
+      id='username'
+      name='username'
+      required
+    />
+    <br />
+    <label for='password'>Password:</label>
+    <input
+      style='margin-top: 2rem;'
+      type='password'
+      id='password'
+      name='password'
+      required
+    />
+    <br />
+    <button style='margin-top: 3rem;' type='submit'>Login</button>
+    <p style='margin: 2rem;'>Don't have an account?
+      <a
+        style='background-color: unset !important;
+    color: unset !important; color: red;'
+        href='/signup'
+      >Sign up</a></p>
+  </form>
 </div>
 
-<script src="./js/login.js"></script>
+<script src='./js/login.js'></script>
