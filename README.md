@@ -52,6 +52,9 @@ To run the application:
 
 A CMS-style blog where developers can publish their blog posts and comment on other developers’ posts as well. The user will be brought to the main 'Homepage' where posts from other users will be displayed. Viewing is only available, unless you create an account. Once the account is created, you are able to post your own blog posts, and comment on others as well. The Uers own profile page is called 'Dashboard'. There, they can create, edit, and delete posts of their own. Login and Logout as you will to use the application. Enjoy!
 
+![alt text](/public/assets/login.png)
+![alt text](/public/assets/home.png)
+
 ## Contributing 
 
   Contact me below!
